@@ -18,7 +18,7 @@
 
 - name: copy telegraf config template
   template:
-     src: roles/monitoring/templates/telegraf.conf.j2
+     src: telegraf.conf.j2
      dest: /etc/telegraf/telegraf.conf
 
 - name: enable telegraf service
