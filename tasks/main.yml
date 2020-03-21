@@ -1,0 +1,32 @@
+---
+# tasks file for ansible-role-jitsi-monitoring-client
+
+- name: add key for telegraf apt repo
+  apt_key:
+      url: https://repos.influxdata.com/influxdb.key
+      state: present
+
+- name: add influxdb apt-repository
+  apt_repository:
+        repo: deb https://repos.influxdata.com/ubuntu bionic stable
+        state: present
+
+- name: install apt package telegraf
+  apt:
+     name: telegraf
+     state: present
+
+- name: copy telegraf config template
+  template:
+     src: roles/monitoring/templates/telegraf.conf.j2
+     dest: /etc/telegraf/telegraf.conf
+
+- name: enable telegraf service
+  systemd:
+        name: telegraf
+        enabled: yes
+
+- name: restart telegraf service
+  systemd:
+       state: restarted
+       name: telegraf
