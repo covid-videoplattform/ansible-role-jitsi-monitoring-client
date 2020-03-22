@@ -1,6 +1,6 @@
 ---
 # defaults file for ansible-role-jitsi-monitoring-client
 
-influx_server: http://<influxserverip>:3001
+influx_server: <influxserverip>
 telegraf_secret: <myhighsecuresecret> # is also set in ansible-role-jitsi-monitoring, must match!
 database: telegraf

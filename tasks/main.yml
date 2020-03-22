@@ -28,5 +28,5 @@
 
 - name: restart telegraf service
   systemd:
-       state: restarted
-       name: telegraf
+      name: telegraf
+      state: restarted
