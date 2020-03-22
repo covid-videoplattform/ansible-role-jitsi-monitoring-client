@@ -4,3 +4,4 @@
 influx_server: <influxserverip>
 telegraf_secret: <myhighsecuresecret> # is also set in ansible-role-jitsi-monitoring, must match!
 database: telegraf
+telegraf_hostname: "{{inventory_hostname}}"
