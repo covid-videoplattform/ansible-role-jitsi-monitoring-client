@@ -21,6 +21,12 @@
      src: telegraf.conf.j2
      dest: /etc/telegraf/telegraf.conf
 
+- name: copy telegraf config template for videobridge
+  template:
+     src: telegraf.conf-videobridge.j2
+     dest: /etc/telegraf/telegraf.conf
+  when: monitoring_role == "videobridge"
+
 - name: enable telegraf service
   systemd:
         name: telegraf
