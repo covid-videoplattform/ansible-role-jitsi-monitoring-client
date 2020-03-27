@@ -15,24 +15,22 @@
   apt:
      name: telegraf
      state: present
+  notify: restart telegraf service
 
 - name: copy telegraf config template
   template:
      src: telegraf.conf.j2
      dest: /etc/telegraf/telegraf.conf
+  notify: restart telegraf service
 
 - name: copy telegraf config template for videobridge
   template:
      src: telegraf.conf-videobridge.j2
      dest: /etc/telegraf/telegraf.conf
   when: monitoring_role == "videobridge"
+  notify: restart telegraf service
 
 - name: enable telegraf service
   systemd:
         name: telegraf
         enabled: yes
-
-- name: restart telegraf service
-  systemd:
-      name: telegraf
-      state: restarted
